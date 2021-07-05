@@ -46,7 +46,7 @@ public class CampaignTest {
 		assertEquals(CampaignStatus.SENT, campaign.getStatus());
 		assertEquals("0a05001000", campaign.getRecipients().getListId());
 		assertEquals("TEST_LIST", campaign.getRecipients().getListName());
-		assertEquals(new Integer(67277), campaign.getRecipients().getSegmentOpts().getSavedSegmentId());
+		assertEquals((Integer) 67277, campaign.getRecipients().getSegmentOpts().getSavedSegmentId());
 		assertEquals(MatchType.ANY, campaign.getRecipients().getSegmentOpts().getMatch());
 		assertEquals(1, campaign.getRecipients().getSegmentOpts().getConditions().size());
 		assertEquals(8, campaign.getReportSummary().getOpens());

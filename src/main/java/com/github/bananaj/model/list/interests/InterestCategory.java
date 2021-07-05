@@ -205,7 +205,6 @@ public class InterestCategory implements JSONParser {
 	 * warped in a RuntimeException to reduce the need for boilerplate code inside
 	 * of lambdas.
 	 * 
-	 * @param interestCategoryId
 	 * @return Interest iterator
 	 */
 	public Iterable<Interest> getInterests() {
@@ -278,7 +277,7 @@ public class InterestCategory implements JSONParser {
         }
         
         public Builder displayOrder(int i) {
-            this.displayOrder = new Integer(i);
+            this.displayOrder = i;
             return this;
         }
         

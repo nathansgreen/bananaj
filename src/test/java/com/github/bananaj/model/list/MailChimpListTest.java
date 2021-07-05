@@ -42,7 +42,7 @@ public class MailChimpListTest {
 		assertEquals("51d15ef0e9", cat.getId());
 		assertEquals("aaa6be6111", cat.getListId());
 		assertEquals("Test Discipline", cat.getTitle());
-		assertEquals(new Integer(0), cat.getDisplayOrder());
+		assertEquals((Integer) 0, cat.getDisplayOrder());
 		assertEquals(InterestCategoryType.CHECKBOXES, cat.getType());
 	}
 	
@@ -54,7 +54,7 @@ public class MailChimpListTest {
 		assertEquals("51d15ef0e9", interest.getCategoryId());
 		assertEquals("aaa6be6111", interest.getListId());
 		assertEquals("Arts and Music", interest.getName());
-		assertEquals(new Integer(1), interest.getDisplayOrder());
+		assertEquals((Integer) 1, interest.getDisplayOrder());
 		assertEquals(2, interest.getSubscriberCount());
 	}
 	
@@ -90,14 +90,14 @@ public class MailChimpListTest {
 	public void testMailChimpList_MergeField() {
 		JSONObject jsonObj = new JSONObject("{\"merge_id\":3,\"tag\":\"ADDRESS\",\"name\":\"Address\",\"type\":\"address\",\"required\":false,\"default_value\":\"\",\"public\":false,\"display_order\":4,\"options\":{\"default_country\":164},\"help_text\":\"\",\"list_id\":\"a70b3a068a\",\"_links\":[{\"rel\":\"self\",\"href\":\"https://us6.api.mailchimp.com/3.0/lists/a70b3a068a/merge-fields/3\",\"method\":\"GET\",\"targetSchema\":\"https://us6.api.mailchimp.com/schema/3.0/Definitions/Lists/MergeFields/Response.json\"},{\"rel\":\"parent\",\"href\":\"https://us6.api.mailchimp.com/3.0/lists/a70b3a068a/merge-fields\",\"method\":\"GET\",\"targetSchema\":\"https://us6.api.mailchimp.com/schema/3.0/Definitions/Lists/MergeFields/CollectionResponse.json\",\"schema\":\"https://us6.api.mailchimp.com/schema/3.0/CollectionLinks/Lists/MergeFields.json\"},{\"rel\":\"update\",\"href\":\"https://us6.api.mailchimp.com/3.0/lists/a70b3a068a/merge-fields/3\",\"method\":\"PATCH\",\"targetSchema\":\"https://us6.api.mailchimp.com/schema/3.0/Definitions/Lists/MergeFields/Response.json\",\"schema\":\"https://us6.api.mailchimp.com/schema/3.0/Definitions/Lists/MergeFields/PATCH.json\"},{\"rel\":\"delete\",\"href\":\"https://us6.api.mailchimp.com/3.0/lists/a70b3a068a/merge-fields/3\",\"method\":\"DELETE\"}]}");
 		MergeField field = new MergeField(null, jsonObj);
-		assertEquals(new Integer(3), field.getId());
+		assertEquals((Integer) 3, field.getId());
 		assertEquals("ADDRESS", field.getTag());
 		assertEquals("Address", field.getName());
 		assertEquals(MergeFieldType.ADDRESS, field.getType());
 		assertEquals(Boolean.FALSE, field.getRequired());
 		assertEquals("", field.getDefaultValue());
 		assertEquals(Boolean.FALSE, field.getIsPublic());
-		assertEquals(new Integer(4), field.getDisplayOrder());
+		assertEquals((Integer) 4, field.getDisplayOrder());
 		assertNotNull("Missing expected options", field.getOptions());
 		assertEquals(164, field.getOptions().getDefaultCountry());
 		assertEquals("", field.getHelpText());

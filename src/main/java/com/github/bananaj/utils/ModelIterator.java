@@ -1,5 +1,6 @@
 package com.github.bananaj.utils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -19,7 +20,7 @@ import com.github.bananaj.model.JSONParser;
 public class ModelIterator<T extends JSONParser> implements Iterable<T> {
 	
 	MailChimpConnection connection;
-	Queue<T> q = new LinkedList<T>();
+	Queue<T> q = new LinkedList<>();
 	private String query;
 	private int offset = 0;
 	private int pagesize = 1000;
@@ -34,11 +35,11 @@ public class ModelIterator<T extends JSONParser> implements Iterable<T> {
 		readPagedEntities();
 	}
 
-	public ModelIterator(Class<T> typeClasse, String query, MailChimpConnection connection, int pageSize) {
+	public ModelIterator(Class<T> typeClasse, String query, MailChimpConnection connection, int pagesize) {
 		this.typeClasse = typeClasse;
 		this.connection = connection;
 		this.query = query;
-		this.pagesize = pagesize > 1000 ? 1000 : (pagesize < 1 ? 1 : pagesize);
+		this.pagesize = Math.min(1000, Math.max(pagesize, 1));
 		readPagedEntities();
 	}
 
@@ -49,7 +50,7 @@ public class ModelIterator<T extends JSONParser> implements Iterable<T> {
 			final JSONObject list = new JSONObject(connection.do_Get(url,connection.getApikey()));
 
 			if (list.has("total_items")) {
-				totalItems = new Integer(list.getInt("total_items"));	// The total number of items matching the query regardless of pagination
+				totalItems = list.getInt("total_items");	// The total number of items matching the query regardless of pagination
 			}
 
 			Iterator<String> keys = list.keys();
@@ -63,14 +64,14 @@ public class ModelIterator<T extends JSONParser> implements Iterable<T> {
 					for (int i = 0 ; i < entArray.length();i++)
 					{
 						final JSONObject objDetail = entArray.getJSONObject(i);
-						T ent = typeClasse.newInstance();
+						T ent = typeClasse.getDeclaredConstructor().newInstance();
 						ent.parse(connection, objDetail);
 						q.offer(ent);
 					}
 					break;	// found entity array, no need to keep looking
 				}
 			}
-		} catch (InstantiationException e) {
+		} catch (InstantiationException|NoSuchMethodException| InvocationTargetException e) {
 			throw new RuntimeException("Class " + typeClasse.getCanonicalName() + " missing default constructor", e);  
 		} catch (TransportException | JSONException |  IllegalAccessException | 
 				MalformedURLException | URISyntaxException e) {
@@ -83,7 +84,7 @@ public class ModelIterator<T extends JSONParser> implements Iterable<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		Iterator<T> it = new Iterator<T>() {
+		return new Iterator<T>() {
 
 			@Override
 			public boolean hasNext() {
@@ -116,7 +117,6 @@ public class ModelIterator<T extends JSONParser> implements Iterable<T> {
 			}
 			
 		};
-		return it;
 	}
 	
 }

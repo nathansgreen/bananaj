@@ -44,7 +44,7 @@ public class MemberTest {
 	public void testMember_MemberTag() {
 		JSONObject jsonObj = new JSONObject("{\"id\":48145,\"name\":\"TestTag\"}");
 		MemberTag t = new MemberTag(jsonObj);
-		assertEquals(new Integer(48145), t.getId());
+		assertEquals((Integer) 48145, t.getId());
 		assertEquals("TestTag", t.getName());
 	}
 	

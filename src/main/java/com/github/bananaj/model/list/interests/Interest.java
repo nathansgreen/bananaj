@@ -219,7 +219,7 @@ public class Interest implements JSONParser {
         }
         
         public Builder displayOrder(int i) {
-            this.displayOrder = new Integer(i);
+            this.displayOrder = i;
             return this;
         }
 
