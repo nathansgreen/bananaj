@@ -129,7 +129,6 @@ public class MailChimpConnection extends Connection {
 	 * @throws TransportException 
 	 * @throws MalformedURLException 
 	 * @throws JSONException 
-	 * @throws Exception
 	 */
 	public MailChimpList getList(String listID) throws JSONException, MalformedURLException, TransportException, URISyntaxException {
 		JSONObject jsonList = new JSONObject(do_Get(new URL(listendpoint +"/"+listID),getApikey()));
@@ -331,7 +330,6 @@ public class MailChimpConnection extends Connection {
 	 * @throws TransportException 
 	 * @throws MalformedURLException 
 	 * @throws JSONException 
-	 * @throws Exception
 	 */
 	public List<CampaignFeedback> getCampaignFeedback(String campaignID) throws JSONException, MalformedURLException, TransportException, URISyntaxException {
 		List<CampaignFeedback> feedback = new ArrayList<CampaignFeedback>();

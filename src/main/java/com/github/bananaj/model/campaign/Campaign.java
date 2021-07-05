@@ -315,7 +315,6 @@ public class Campaign implements JSONParser {
 	 * @throws TransportException 
 	 * @throws MalformedURLException 
 	 * @throws JSONException 
-	 * @throws Exception
 	 */
 	public CampaignFeedback createFeedback(String message) throws JSONException, MalformedURLException, TransportException, URISyntaxException {
 		CampaignFeedback feedback = new CampaignFeedback.Builder()
@@ -335,7 +334,6 @@ public class Campaign implements JSONParser {
 	 * @throws URISyntaxException 
 	 * @throws TransportException 
 	 * @throws MalformedURLException 
-	 * @throws Exception
 	 */
 	public void deleteFeedback(String feedbackId) throws MalformedURLException, TransportException, URISyntaxException {
 		getConnection().do_Delete(new URL(connection.getCampaignendpoint()+"/"+getId()+"/feedback/"+feedbackId),connection.getApikey());

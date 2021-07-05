@@ -630,7 +630,6 @@ public class MailChimpList implements JSONParser {
 	 * of lambdas.
 	 * 
 	 * @return InterestCategory iterator
-	 * @throws Exception
 	 */
 	public Iterable<InterestCategory> getInterestCategories() {
 		final String baseURL = getConnection().getListendpoint()+"/"+getId()+"/interest-categories";
@@ -1294,7 +1293,6 @@ public class MailChimpList implements JSONParser {
 	 * @throws URISyntaxException 
 	 * @throws TransportException 
 	 * @throws MalformedURLException 
-	 * @throws Exception
 	 */
 	public void delete() throws MalformedURLException, TransportException, URISyntaxException {
 		connection.do_Delete(new URL(connection.getListendpoint() +"/"+getId()), connection.getApikey());
