@@ -1,5 +1,4 @@
 apply plugin: "java"
-apply plugin: "maven"
 apply plugin: "maven-publish"
 apply plugin: 'signing'
 
@@ -20,12 +19,12 @@ repositories {
 }
 
 dependencies {
-    compile group: 'commons-codec', name: 'commons-codec', version: '1.11'
-    compile group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
-    compile group: 'org.json', name: 'json', version: '20200518'
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.5'
-	
-	// testCompile 'junit:junit:4.12'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+    implementation group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
+    implementation group: 'org.json', name: 'json', version: '20200518'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+
+    testImplementation 'junit:junit:4.13'
 }
 
 task javadocJar(type: Jar) {
@@ -39,7 +38,7 @@ task sourcesJar(type: Jar) {
 }
 
 task fatJar(type: Jar) {
-    baseName = 'bananaj'
+    archiveBaseName = 'bananaj'
     classifier = "fat"
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
