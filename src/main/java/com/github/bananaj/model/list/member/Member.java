@@ -907,8 +907,8 @@ public class Member implements JSONParser {
 		private String emailAddress;
 		private EmailType emailType;
 		private MemberStatus status;
-		private Map<String, Object> mergeFields = new HashMap<String, Object>();
-		private Map<String, Boolean> interest = new HashMap<String, Boolean>();
+		private Map<String, Object> mergeFields = new HashMap<>();
+		private Map<String, Boolean> interest = new HashMap<>();
 		private String language;
 		private boolean vip;
 		//private MemberLocation location;
@@ -917,7 +917,7 @@ public class Member implements JSONParser {
 		private ZonedDateTime timestampSignup;
 		private String ipOpt;
 		private ZonedDateTime timestampOpt;
-		private List<MemberTag> tags = new ArrayList<MemberTag>();
+		private List<MemberTag> tags = new ArrayList<>();
 		private MemberStatus statusIfNew;
 		private MailChimpConnection connection;
 
@@ -949,6 +949,22 @@ public class Member implements JSONParser {
 		public Builder emailType(EmailType emailType) {
 			this.emailType = emailType;
 			return this;
+		}
+
+		public Builder firstName(String firstName) {
+			return mergeField("FNAME", firstName);
+		}
+
+		public Builder lastName(String lastName) {
+			return mergeField("LNAME", lastName);
+		}
+
+		public Builder phone(String phone) {
+			return mergeField("PHONE", phone);
+		}
+
+		public Builder address(String address) {
+			return mergeField("ADDRESS", address);
 		}
 
 		public Builder status(MemberStatus status) {
