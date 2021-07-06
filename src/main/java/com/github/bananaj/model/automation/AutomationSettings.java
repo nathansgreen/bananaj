@@ -39,6 +39,17 @@ public class AutomationSettings {
 
 	}
 
+	public AutomationSettings(Builder b) {
+		this.title = b.title;
+		this.fromName = b.fromName;
+		this.replyTo = b.replyTo;
+		this.useConversation = b.useConversation;
+		this.toName = b.toName;
+		this.authenticate = b.authenticate;
+		this.autoFooter = b.autoFooter;
+		this.inlineCss = b.inlineCss;
+	}
+
 	/**
 	 * The title of the Automation
 	 */
@@ -154,5 +165,62 @@ public class AutomationSettings {
 				"    Auto Footer: " + isAutoFooter() + System.lineSeparator() +
 				"    Inline CSS: " + isInlineCss();
 	}
-	
+
+	/**
+	 * Builder for {@link AutomationSettings}
+	 */
+	public static class Builder {
+		private String title;
+		private String fromName;
+		private String replyTo;
+		private boolean useConversation;
+		private String toName;
+		private boolean authenticate;
+		private boolean autoFooter;
+		private boolean inlineCss;
+
+		public Builder title(String title) {
+			this.title = title;
+			return this;
+		}
+
+		public Builder fromName(String fromName) {
+			this.fromName = fromName;
+			return this;
+		}
+
+		public Builder replyTo(String replyTo) {
+			this.replyTo = replyTo;
+			return this;
+		}
+
+		public Builder useConversation(boolean useConversation) {
+			this.useConversation = useConversation;
+			return this;
+		}
+
+		public Builder toName(String toName) {
+			this.toName = toName;
+			return this;
+		}
+
+		public Builder authenticate(boolean authenticate) {
+			this.authenticate = authenticate;
+			return this;
+		}
+
+		public Builder autoFooter(boolean autoFooter) {
+			this.autoFooter = autoFooter;
+			return this;
+		}
+
+		public Builder inlineCss(boolean inlineCss) {
+			this.inlineCss = inlineCss;
+			return this;
+		}
+
+		public AutomationSettings build() {
+			return new AutomationSettings(this);
+		}
+	}
 }

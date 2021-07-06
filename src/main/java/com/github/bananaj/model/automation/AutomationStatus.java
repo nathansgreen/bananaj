@@ -29,6 +29,9 @@ public enum AutomationStatus {
 		this.stringRepresentation = stringRepresentation;
 	}
 
+	public static AutomationStatus lookup(String value) {
+		return valueOf(value.toUpperCase());
+	}
 }
 
 

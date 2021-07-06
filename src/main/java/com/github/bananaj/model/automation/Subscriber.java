@@ -26,6 +26,13 @@ public class Subscriber {
 
 	}
 
+	public Subscriber(Builder b) {
+		this.id = b.id;
+		this.workflowId = b.workflowId;
+		this.listId = b.listId;
+		this.emailAddress = b.emailAddress;
+	}
+
 	/**
 	 * @return The MD5 hash of the lowercase version of the list member's email address.
 	 */
@@ -64,5 +71,37 @@ public class Subscriber {
 				"    Workflow Id: " + getWorkflowId() + System.lineSeparator() +
 				"    List Id: " + getListId() + System.lineSeparator() +
 				"    Email Address: " + getEmailAddress();
+	}
+
+	public static class Builder {
+		private String id;
+		private String workflowId;
+		private String listId;
+
+		public Builder setId(String id) {
+			this.id = id;
+			return this;
+		}
+
+		public Builder setWorkflowId(String workflowId) {
+			this.workflowId = workflowId;
+			return this;
+		}
+
+		public Builder setListId(String listId) {
+			this.listId = listId;
+			return this;
+		}
+
+		public Builder setEmailAddress(String emailAddress) {
+			this.emailAddress = emailAddress;
+			return this;
+		}
+
+		private String emailAddress;
+
+		public Subscriber build() {
+			return new Subscriber(this);
+		}
 	}
 }

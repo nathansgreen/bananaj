@@ -34,6 +34,14 @@ public class AutomationRecipient {
 
 	}
 
+	public AutomationRecipient(Builder b) {
+		this.listId = b.listId;
+		this.listIsActive = b.listIsActive;
+		this.listName = b.listName;
+		//this.segment_opts = b.segment_opts;
+		b.storeId = b.storeId;
+	}
+
 	/**
 	 * The unique list id
 	 */
@@ -106,5 +114,39 @@ public class AutomationRecipient {
 				"    List is Active: " + isListIsActive() + System.lineSeparator() +
 				"    Store Id: " + getStoreId();
 	}
-	
+
+	/**
+	 * Builder for {@link AutomationRecipient}
+	 */
+	public static class Builder {
+		private String listId;
+		private boolean listIsActive;
+		private String listName;
+		//private SegmentOpts segment_opts;
+		private String storeId;
+
+		public Builder setListId(String listId) {
+			this.listId = listId;
+			return this;
+		}
+
+		public Builder setListIsActive(boolean listIsActive) {
+			this.listIsActive = listIsActive;
+			return this;
+		}
+
+		public Builder setListName(String listName) {
+			this.listName = listName;
+			return this;
+		}
+
+		public Builder setStoreId(String storeId) {
+			this.storeId = storeId;
+			return this;
+		}
+
+		public AutomationRecipient build() {
+			return new AutomationRecipient(this);
+		}
+	}
 }

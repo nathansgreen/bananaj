@@ -55,7 +55,7 @@ public class AutomationEmail {
         createTime = DateConverter.fromISO8601(jsonObj.getString("create_time"));
         startTime = jsonObj.has("start_time") ? DateConverter.fromISO8601(jsonObj.getString("start_time")) : null;
         archiveUrl = jsonObj.getString("archive_url");
-		status = AutomationStatus.valueOf(jsonObj.getString("status").toUpperCase());
+		status = AutomationStatus.lookup(jsonObj.getString("status"));
 		emailsSent = jsonObj.getInt("emails_sent");
         sendTime = jsonObj.has("send_time") ? DateConverter.fromISO8601(jsonObj.getString("send_time")) : null;
         contentType = jsonObj.getString("content_type");

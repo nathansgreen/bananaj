@@ -47,12 +47,25 @@ public class Automation {
 
 	}
 
+	public Automation(Builder b) {
+		this.id = b.id;
+		this.createTime = b.createTime;
+		this.startTime = b.startTime;
+		this.status = b.status;
+		this.emailsSent = b.emailsSent;
+		this.recipients = b.recipients;
+		this.settings = b.settings;
+		this.tracking = b.tracking;
+		//this.trigger_settings = b.trigger_settings;
+		//this.report_summary = b.report_summary;
+	}
+
 	private void parse(MailChimpConnection connection, JSONObject jsonObj) {
 		id = jsonObj.getString("id");
 		this.connection = connection;
 		createTime = DateConverter.fromISO8601(jsonObj.getString("create_time"));
 		startTime = jsonObj.has("start_time") ? DateConverter.fromISO8601(jsonObj.getString("start_time")) : null;
-		status = AutomationStatus.valueOf(jsonObj.getString("status").toUpperCase());
+		status = AutomationStatus.lookup(jsonObj.getString("status"));
 		emailsSent = jsonObj.getInt("emails_sent");
 		if (jsonObj.has("recipients")) {
 			recipients = new AutomationRecipient(jsonObj.getJSONObject("recipients"));
@@ -235,5 +248,63 @@ public class Automation {
 				getTracking().toString(); 
 	}
 
-	// TODO: add builder pattern
+	/**
+	 * Builder for {@link Automation}
+	 */
+	public static class Builder {
+		private String id;
+		private ZonedDateTime createTime;
+		private ZonedDateTime startTime;
+		private AutomationStatus status;
+		private int emailsSent;
+		private AutomationRecipient recipients;
+		private AutomationSettings settings;
+		private Tracking tracking;
+		//private AutomationTriggerSettings trigger_settings;
+		//private AutomationReportSummary report_summary;
+
+		public Builder setId(String id) {
+			this.id = id;
+			return this;
+		}
+
+		public Builder setCreateTime(ZonedDateTime createTime) {
+			this.createTime = createTime;
+			return this;
+		}
+
+		public Builder setStartTime(ZonedDateTime startTime) {
+			this.startTime = startTime;
+			return this;
+		}
+
+		public Builder setStatus(AutomationStatus status) {
+			this.status = status;
+			return this;
+		}
+
+		public Builder setEmailsSent(int emailsSent) {
+			this.emailsSent = emailsSent;
+			return this;
+		}
+
+		public Builder setRecipients(AutomationRecipient recipients) {
+			this.recipients = recipients;
+			return this;
+		}
+
+		public Builder setSettings(AutomationSettings settings) {
+			this.settings = settings;
+			return this;
+		}
+
+		public Builder setTracking(Tracking tracking) {
+			this.tracking = tracking;
+			return this;
+		}
+
+		public Automation build() {
+			return new Automation(this);
+		}
+	}
 }
