@@ -1,6 +1,7 @@
 package com.github.bananaj.model.campaign;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -300,8 +301,14 @@ public class CampaignSegmentOpts {
 			return this;
 		}
 
-		public Builder conditions( List<AbstractCondition> conditions) {
+		public Builder conditions(List<AbstractCondition> conditions) {
 			this.conditions = conditions;
+			return this;
+		}
+
+		public Builder conditions(AbstractCondition... conditions) {
+			this.conditions = new ArrayList<>();
+			Collections.addAll(this.conditions, conditions);
 			return this;
 		}
 

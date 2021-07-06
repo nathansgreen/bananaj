@@ -262,7 +262,39 @@ public class Segment implements JSONParser {
 		connection.do_Post(new URL(connection.getListendpoint()+"/"+getListId()+"/segments/"+getId()), json.toString(), connection.getApikey());
 		// TODO: return response object members_added / members_removed
 	}
+
+	/**
+	 * Batch add list members to static segment
+	 * 
+	 * @param membersToAdd    Members to add to the static segment. An array of
+	 *                        emails to be used for a static segment. Any emails
+	 *                        provided that are not present on the list will be
+	 *                        ignored.
+	 * @throws MalformedURLException
+	 * @throws TransportException
+	 * @throws URISyntaxException
+	 */
+	public void addMembers(String... membersToAdd) throws MalformedURLException, TransportException, URISyntaxException {
+		updateMembers(membersToAdd, null);
+		// TODO: return response object members_added / members_removed
+	}
 	
+	/**
+	 * Batch remove list members to static segment
+	 *
+	 * @param membersToRemove Members to remove from the static segment. An array of
+	 *                        emails to be used for a static segment. Any emails
+	 *                        provided that are not present on the list will be
+	 *                        ignored.
+	 * @throws MalformedURLException
+	 * @throws TransportException
+	 * @throws URISyntaxException
+	 */
+	public void removeMembers(String... membersToRemove) throws MalformedURLException, TransportException, URISyntaxException {
+		updateMembers(null, membersToRemove);
+		// TODO: return response object members_added / members_removed
+	}
+
 	/**
 	 * Update segment via a PATCH operation. Member fields will be freshened.
 	 * @param emails An array of emails to be used for a static segment. Any emails provided that are not present on the list will be ignored. Passing an empty array for an existing static segment will reset that segment and remove all members. This field cannot be provided with the options field.
@@ -270,7 +302,7 @@ public class Segment implements JSONParser {
 	 * @throws TransportException
 	 * @throws URISyntaxException
 	 */
-	public void updateMembers(String [] emails) throws MalformedURLException, TransportException, URISyntaxException {
+	public void updateMembers(String... emails) throws MalformedURLException, TransportException, URISyntaxException {
 		JSONObject json = new JSONObject();
 		json.put("name", getName());
 		json.put("static_segment", emails);

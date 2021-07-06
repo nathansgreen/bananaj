@@ -1,13 +1,9 @@
 package com.github.bananaj.model.campaign;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.json.JSONObject;
 
 import com.github.bananaj.exceptions.ConditionException;
 import com.github.bananaj.model.list.interests.Interest;
-import com.github.bananaj.model.list.segment.AbstractCondition;
 import com.github.bananaj.model.list.segment.ConditionType;
 import com.github.bananaj.model.list.segment.MatchType;
 import com.github.bananaj.model.list.segment.Operator;
@@ -73,18 +69,15 @@ public class CampaignRecipients {
      * @throws ConditionException
      */
     public CampaignRecipients(Interest interest) throws ConditionException {
-    	ArrayList<AbstractCondition> conditions = new ArrayList<AbstractCondition>();
-    	conditions.add(new StringArrayCondition.Builder()
-    			.operator(Operator.INTERESTCONTAINS)
-    			.field("interests-"+interest.getCategoryId())
-    			.conditionType(ConditionType.INTERESTS)
-    			.value(new ArrayList<String>(Arrays.asList(new String[]{interest.getId()})))
-    			.build());
-
     	listId = interest.getListId();
     	segmentOpts = new CampaignSegmentOpts.Builder()
     			.match(MatchType.ANY)
-    			.conditions(conditions)
+    			.conditions(new StringArrayCondition.Builder()
+						.operator(Operator.INTERESTCONTAINS)
+						.field("interests-"+interest.getCategoryId())
+						.conditionType(ConditionType.INTERESTS)
+						.value(interest.getId())
+						.build())
     			.build();
     }
 	

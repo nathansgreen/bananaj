@@ -1,6 +1,7 @@
 package com.github.bananaj.model.list.segment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -109,6 +110,12 @@ public class StringArrayCondition implements AbstractCondition {
 
 		public Builder value(List<String> value) {
 			this.value = value;
+			return this;
+		}
+
+		public Builder value(String... value) {
+			this.value = new ArrayList<>();
+			Collections.addAll(this.value, value);
 			return this;
 		}
 

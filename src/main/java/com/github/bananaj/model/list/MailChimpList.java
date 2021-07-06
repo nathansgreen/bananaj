@@ -901,7 +901,7 @@ public class MailChimpList implements JSONParser {
 	 * @throws MalformedURLException
 	 * @throws EmailException
 	 */
-	public Segment addStaticSegment(String name, String[] emails)
+	public Segment addStaticSegment(String name, String... emails)
 			throws MalformedURLException, TransportException, URISyntaxException, EmailException {
 		JSONObject segment = new JSONObject();
 		segment.put("name", name);

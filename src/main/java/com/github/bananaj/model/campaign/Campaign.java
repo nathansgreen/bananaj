@@ -134,9 +134,9 @@ public class Campaign implements JSONParser {
 	}
 	
 	/**
-	 * Send the campaign to the mailChimpList members
+	 * Send the campaign to the listed recipients.
 	 */
-	public void sendTestEmail(String[] emails, CampaignSendType type) throws Exception {
+	public void sendTestEmail(CampaignSendType type, String... emails) throws Exception {
 		JSONObject data = new JSONObject();
 		JSONArray testEmails = new JSONArray();
 		for (String email : emails) {
