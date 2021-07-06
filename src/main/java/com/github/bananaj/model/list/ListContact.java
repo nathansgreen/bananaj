@@ -143,50 +143,58 @@ public class ListContact {
 		/**
 		 * @param company The company name for the list.
 		 */
-		public void company(String company) {
+		public Builder company(String company) {
 			this.company = company;
+			return this;
 		}
 		/**
 		 * @param address1 The street address for the list contact.
 		 */
-		public void address1(String address1) {
+		public Builder address1(String address1) {
 			this.address1 = address1;
+			return this;
 		}
 		/**
 		 * @param address2 The street address for the list contact.
 		 */
-		public void address2(String address2) {
+		public Builder address2(String address2) {
 			this.address2 = address2;
+			return this;
 		}
 		/**
 		 * @param city The city for the list contact.
 		 */
-		public void city(String city) {
+		public Builder city(String city) {
 			this.city = city;
+			return this;
 		}
 		/**
 		 * @param state The state for the list contact.
 		 */
-		public void state(String state) {
+		public Builder state(String state) {
 			this.state = state;
+			return this;
 		}
 		/**
 		 * @param zip The postal or zip code for the list contact.
 		 */
-		public void zip(String zip) {
+		public Builder zip(String zip) {
 			this.zip = zip;
+			return this;
 		}
 		/**
 		 * @param country A two-character ISO3166 country code. Defaults to US if invalid.
 		 */
-		public void country(String country) {
+		public Builder country(String country) {
 			this.country = country;
+			return this;
 		}
 		/**
 		 * @param phone The phone number for the list contact.
 		 */
-		public void phone(String phone) {
+		public Builder phone(String phone) {
 			this.phone = phone;
+			return this;
 		}
     	
     	public ListContact build() {

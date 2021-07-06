@@ -94,26 +94,30 @@ public class ListCampaignDefaults {
 		/**
 		 * @param fromName The default from name for campaigns sent to this list.
 		 */
-		public void setFromName(String fromName) {
+		public Builder fromName(String fromName) {
 			this.fromName = fromName;
+			return this;
 		}
 		/**
 		 * @param fromEmail The default from email for campaigns sent to this list.
 		 */
-		public void setFromEmail(String fromEmail) {
+		public Builder fromEmail(String fromEmail) {
 			this.fromEmail = fromEmail;
+			return this;
 		}
 		/**
 		 * @param subject The default subject line for campaigns sent to this list.
 		 */
-		public void setSubject(String subject) {
+		public Builder subject(String subject) {
 			this.subject = subject;
+			return this;
 		}
 		/**
 		 * @param language The default language for this lists's forms.
 		 */
-		public void setLanguage(String language) {
+		public Builder language(String language) {
 			this.language = language;
+			return this;
 		}
 
     	public ListCampaignDefaults build() {
