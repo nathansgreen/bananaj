@@ -29,5 +29,8 @@ public enum CampaignStatus {
 	private void setStringRepresentation(String stringRepresentation) {
 		this.stringRepresentation = stringRepresentation;
 	}
-	
+
+	public static CampaignStatus lookup(String value) {
+		return valueOf(value.toUpperCase());
+	}
 }

@@ -77,12 +77,12 @@ public class Campaign implements JSONParser {
 		this.createTime = DateConverter.fromISO8601(jsonObj.getString("create_time"));
 		this.archiveUrl = jsonObj.getString("archive_url");
 		this.longArchiveUrl = jsonObj.getString("long_archive_url");
-		this.status = CampaignStatus.valueOf(jsonObj.getString("status").toUpperCase());
+		this.status = CampaignStatus.lookup(jsonObj.getString("status"));
 		this.emailsSent = jsonObj.getInt("emails_sent");
 		if (jsonObj.has("send_time")) {
 			this.sendTime = DateConverter.fromISO8601(jsonObj.getString("send_time"));
 		}
-		this.contentType = CampaignContentType.valueOf(jsonObj.getString("content_type").toUpperCase());
+		this.contentType = CampaignContentType.lookup(jsonObj.getString("content_type"));
 		this.needsBlockRefresh = jsonObj.getBoolean("needs_block_refresh");
 		this.resendable = jsonObj.getBoolean("resendable");
 		

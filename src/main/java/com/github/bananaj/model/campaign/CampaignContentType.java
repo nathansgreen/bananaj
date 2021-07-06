@@ -5,7 +5,8 @@ public enum CampaignContentType {
 	TEMPLATE("template"), 
 	DRAG_AND_DROP("drag_and_drop"), 
 	HTML("html"), 
-	URL("url");
+	URL("url"),
+	MULTICHANNEL("multichannel");
 	
 	private String stringRepresentation;
 	
@@ -24,5 +25,8 @@ public enum CampaignContentType {
 	private void setStringRepresentation(String stringRepresentation) {
 		this.stringRepresentation = stringRepresentation;
 	}
-	
+
+	public static CampaignContentType lookup(String value) {
+		return valueOf(value.toUpperCase());
+	}
 }
