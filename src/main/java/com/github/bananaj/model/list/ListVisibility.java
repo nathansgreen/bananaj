@@ -5,8 +5,8 @@ package com.github.bananaj.model.list;
  */
 public enum ListVisibility {
 
-	PUB("pub"),
-	PRV("prv");
+	PUBLIC("pub"),
+	PRIVATE("prv");
 	
 	private String stringRepresentation;
 	
@@ -26,4 +26,20 @@ public enum ListVisibility {
 		this.stringRepresentation = stringRepresentation;
 	}
 
+	/**
+	 * Find the list visibility type based on the API value.
+	 * @param value the value from the API (either {@code pub} or {@code prv}
+	 * @return the appropriate visibilty value
+	 * @throws IllegalArgumentException if the value is not recognized
+	 */
+	public static ListVisibility lookup(String value) {
+		switch (value==null?"":value) {
+			case "pub":
+				return PUBLIC;
+			case "prv":
+				return PRIVATE;
+			default:
+				throw new IllegalArgumentException("Unknown visibility '" + value + "'");
+		}
+	}
 }

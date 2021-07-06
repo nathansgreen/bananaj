@@ -112,7 +112,7 @@ public class MailChimpList implements JSONParser {
 		subscribeUrlShort = jsonList.getString("subscribe_url_short");
 		subscribeUrlLong = jsonList.getString("subscribe_url_long");
 		beamerAddress = jsonList.getString("beamer_address");
-		visibility = ListVisibility.valueOf(jsonList.getString("visibility").toUpperCase());
+		visibility = ListVisibility.lookup(jsonList.getString("visibility"));
 		doubleOptin = jsonList.getBoolean("double_optin");
 		hasWelcome = jsonList.getBoolean("has_welcome");
 		marketingPermissions = jsonList.getBoolean("marketing_permissions");
@@ -1338,7 +1338,7 @@ public class MailChimpList implements JSONParser {
     	private String notifyOnSubscribe;	// The email address to send subscribe notifications to
     	private String notifyOnUnsubscribe; // The email address to send unsubscribe notifications to 
     	private boolean emailTypeOption = false;	// Whether the list supports multiple formats for emails. When set to true, subscribers can choose whether they want to receive HTML or plain-text emails. When set to false, subscribers will receive HTML emails, with a plain-text alternative backup.
-    	private ListVisibility visibility = ListVisibility.PRV;	// Whether this list is public or private (pub, prv)
+    	private ListVisibility visibility = ListVisibility.PRIVATE;	// Whether this list is public or private (pub, prv)
     	private boolean doubleOptin = false;	// Whether or not to require the subscriber to confirm subscription via email
     	private boolean marketingPermissions = false;	// Whether or not the list has marketing permissions (eg. GDPR) enabled
 
