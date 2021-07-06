@@ -22,5 +22,8 @@ public enum EmailType {
 	private void setStringRepresentation(String stringRepresentation) {
 		this.stringRepresentation = stringRepresentation;
 	}
-	
+
+	public static EmailType lookup(String value) {
+		return valueOf(value.toUpperCase());
+	}
 }

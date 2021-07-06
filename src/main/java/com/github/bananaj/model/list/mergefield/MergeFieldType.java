@@ -31,4 +31,7 @@ public enum MergeFieldType {
 		this.stringRepresentation = stringRepresentation;
 	}
 
+	public static MergeFieldType lookup(String value) {
+		return valueOf(value.toUpperCase());
+	}
 }

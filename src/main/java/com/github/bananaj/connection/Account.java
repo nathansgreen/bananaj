@@ -44,7 +44,7 @@ public class Account {
 		this.avatarUrl = jsonObj.getString("avatar_url");
 		this.role = jsonObj.getString("role");
 		this.memberSince = DateConverter.fromISO8601(jsonObj.getString("member_since"));
-		this.pricingPlanType = PricingPlanType.valueOf(jsonObj.getString("pricing_plan_type").toUpperCase());
+		this.pricingPlanType = PricingPlanType.lookup(jsonObj.getString("pricing_plan_type"));
 		if (jsonObj.has("first_payment")) {
 			this.firstPayment = DateConverter.fromISO8601(jsonObj.getString("first_payment"));
 		}
@@ -237,6 +237,10 @@ public class Account {
 		 */
 		private void setStringRepresentation(String stringRepresentation) {
 			this.stringRepresentation = stringRepresentation;
+		}
+
+		public static PricingPlanType lookup(String value) {
+			return valueOf(value.toUpperCase());
 		}
 	}
 

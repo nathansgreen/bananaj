@@ -36,4 +36,8 @@ public enum MemberStatus {
 	private void setStringRepresentation(String stringRepresentation) {
 		this.stringRepresentation = stringRepresentation;
 	}
+
+	public static MemberStatus lookup(String value) {
+		return valueOf(value.toUpperCase());
+	}
 }

@@ -107,11 +107,11 @@ public class Member implements JSONParser {
         id = member.getString("id");
 		emailAddress = member.getString("email_address");
 		uniqueEmailId = member.getString("unique_email_id");
-		emailType =  EmailType.valueOf(member.getString("email_type").toUpperCase());
-		status = MemberStatus.valueOf(member.getString("status").toUpperCase());
+		emailType =  EmailType.lookup(member.getString("email_type"));
+		status = MemberStatus.lookup(member.getString("status"));
 		unsubscribeReason = member.has("unsubscribe_reason") ? member.getString("unsubscribe_reason") : null;
 		
-		mergeFields = new HashMap<String, Object>();
+		mergeFields = new HashMap<>();
 		if (member.has("merge_fields")) {
 			final JSONObject mergeFieldsObj = member.getJSONObject("merge_fields");
 			for(String key : mergeFieldsObj.keySet()) {
@@ -119,7 +119,7 @@ public class Member implements JSONParser {
 			}
 		}
 		
-		interest = new HashMap<String, Boolean>();
+		interest = new HashMap<>();
 		if (member.has("interests")) {
 			final JSONObject interests = member.getJSONObject("interests");
 			for(String key : interests.keySet()) {

@@ -57,7 +57,7 @@ public class MergeField implements JSONParser {
 		id = jsonObj.getInt("merge_id");
 		tag = jsonObj.getString("tag");
 		name = jsonObj.getString("name");
-		type = MergeFieldType.valueOf(jsonObj.getString("type").toUpperCase());
+		type = MergeFieldType.lookup(jsonObj.getString("type"));
 		required = jsonObj.getBoolean("required");
 		defaultValue = jsonObj.getString("default_value");
 		isPublic = jsonObj.getBoolean("public");
