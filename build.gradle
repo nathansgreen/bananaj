@@ -87,15 +87,15 @@ publishing {
     repositories {
         maven {
             url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-            credentials {
-                username ossrhUsername
-                password ossrhPassword
-            }
+//            credentials {
+//                username ossrhUsername
+//                password ossrhPassword
+//            }
         }
     }
 }
 
-signing {
-    sign publishing.publications.mavenJava
-}
+//signing {
+//    sign publishing.publications.mavenJava
+//}
 
